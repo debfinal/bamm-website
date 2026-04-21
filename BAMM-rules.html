@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BAMM — Group Rules</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root {
+    --red: #C41E3A;
+    --red-dark: #8B1020;
+    --red-deep: #5C0A16;
+    --gold: #E8B84B;
+    --gold-light: #F5D98A;
+    --cream: #FDF6EC;
+    --ink: #1A0A06;
+    --muted: #6B4C3B;
+    --bg-warm: #FAF3E8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+  .bangla { font-family: 'Hind Siliguri', sans-serif; }
+
+  /* ── NAVBAR ── */
+  #navbar {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    transition: all 0.4s ease; padding: 20px 0;
+    background: var(--red-deep);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 32px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: white; }
+  .logo-badge {
+    width: 46px; height: 46px; background: var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Hind Siliguri', sans-serif; font-size: 22px; font-weight: 700;
+    color: var(--red-dark);
+  }
+  .nav-wordmark strong { display: block; font-size: 18px; letter-spacing: 2px; }
+  .nav-wordmark span { font-size: 11px; opacity: 0.8; letter-spacing: 1px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 14px; font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a.active { color: var(--gold); }
+
+  /* ── HERO ── */
+  .rules-hero {
+    background: var(--red-dark);
+    padding: 140px 32px 80px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .rules-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23E8B84B' fill-opacity='0.1'/%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%23E8B84B' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='0' r='1.5' fill='%23E8B84B' fill-opacity='0.1'/%3E%3Ccircle cx='0' cy='80' r='1.5' fill='%23E8B84B' fill-opacity='0.1'/%3E%3Ccircle cx='80' cy='80' r='1.5' fill='%23E8B84B' fill-opacity='0.1'/%3E%3C/svg%3E");
+  }
+  .rules-hero-inner { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+  .rules-hero span {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 18px; color: var(--gold); letter-spacing: 4px;
+    display: block; margin-bottom: 16px;
+  }
+  .rules-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 900; color: white; line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .rules-hero h1 em { color: var(--gold); font-style: italic; }
+  .rules-hero p {
+    font-size: 18px; color: rgba(255,255,255,0.75); line-height: 1.8;
+    max-width: 600px; margin: 0 auto;
+  }
+  .hero-divider {
+    display: flex; align-items: center; justify-content: center;
+    gap: 12px; margin: 28px auto 0; width: fit-content;
+  }
+  .hero-divider-line { width: 60px; height: 1px; background: rgba(232,184,75,0.5); }
+  .hero-divider-diamond {
+    width: 8px; height: 8px; background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  /* ── PREAMBLE ── */
+  .preamble {
+    max-width: 820px; margin: 0 auto;
+    padding: 64px 32px 0;
+    text-align: center;
+  }
+  .preamble-quote {
+    border-left: none;
+    padding: 32px 40px;
+    background: var(--bg-warm);
+    border-radius: 16px;
+    border-top: 4px solid var(--gold);
+    position: relative;
+  }
+  .preamble-quote::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 80px; color: var(--gold); opacity: 0.3;
+    position: absolute; top: -10px; left: 20px;
+    line-height: 1;
+  }
+  .preamble-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-style: italic;
+    color: var(--red-dark); line-height: 1.8;
+  }
+  .preamble-quote .attribution {
+    display: block; margin-top: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-style: normal; font-size: 14px;
+    color: var(--muted); letter-spacing: 1px;
+  }
+
+  /* ── RULES SECTION ── */
+  .rules-section { padding: 72px 32px 100px; max-width: 1100px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 60px; }
+  .section-label {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 16px; color: var(--red);
+    letter-spacing: 3px; display: block; margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 50px);
+    font-weight: 900; line-height: 1.1; margin-bottom: 16px;
+  }
+  .section-divider {
+    width: 60px; height: 3px; background: var(--gold);
+    margin: 0 auto;
+  }
+
+  /* ── RULES GRID ── */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 28px;
+  }
+  .rule-card {
+    background: white; border-radius: 16px;
+    padding: 32px 28px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--red);
+    transition: all 0.3s; position: relative;
+    overflow: hidden;
+  }
+  .rule-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(196,30,58,0.12);
+  }
+  .rule-card:nth-child(2) { border-top-color: var(--gold); }
+  .rule-card:nth-child(3) { border-top-color: #2D6A2D; }
+  .rule-card:nth-child(4) { border-top-color: #1A4A8A; }
+  .rule-card:nth-child(5) { border-top-color: var(--red-dark); }
+  .rule-card:nth-child(6) { border-top-color: #6B3A8B; }
+  .rule-card:nth-child(7) { border-top-color: #C47A1A; }
+  .rule-card:nth-child(8) { border-top-color: var(--red); }
+
+  .rule-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px; font-weight: 900;
+    color: rgba(196,30,58,0.08);
+    position: absolute; top: 12px; right: 20px;
+    line-height: 1;
+  }
+  .rule-card:nth-child(2) .rule-number { color: rgba(232,184,75,0.15); }
+  .rule-card:nth-child(3) .rule-number { color: rgba(45,106,45,0.1); }
+  .rule-card:nth-child(4) .rule-number { color: rgba(26,74,138,0.1); }
+  .rule-card:nth-child(5) .rule-number { color: rgba(139,16,32,0.1); }
+  .rule-card:nth-child(6) .rule-number { color: rgba(107,58,139,0.1); }
+  .rule-card:nth-child(7) .rule-number { color: rgba(196,122,26,0.1); }
+  .rule-card:nth-child(8) .rule-number { color: rgba(196,30,58,0.1); }
+
+  .rule-icon {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(196,30,58,0.08);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 18px;
+  }
+  .rule-card:nth-child(2) .rule-icon { background: rgba(232,184,75,0.12); }
+  .rule-card:nth-child(3) .rule-icon { background: rgba(45,106,45,0.1); }
+  .rule-card:nth-child(4) .rule-icon { background: rgba(26,74,138,0.1); }
+  .rule-card:nth-child(5) .rule-icon { background: rgba(139,16,32,0.1); }
+  .rule-card:nth-child(6) .rule-icon { background: rgba(107,58,139,0.1); }
+  .rule-card:nth-child(7) .rule-icon { background: rgba(196,122,26,0.1); }
+  .rule-card:nth-child(8) .rule-icon { background: rgba(196,30,58,0.08); }
+
+  .rule-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--ink); margin-bottom: 6px;
+  }
+  .rule-bangla {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 14px; color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .rule-desc {
+    font-size: 15px; color: #5A4A40; line-height: 1.75;
+  }
+  .rule-tag {
+    display: inline-block; margin-top: 16px;
+    padding: 4px 14px; border-radius: 20px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+    background: rgba(196,30,58,0.07); color: var(--red);
+  }
+  .rule-card:nth-child(2) .rule-tag { background: rgba(232,184,75,0.12); color: #8B6A00; }
+  .rule-card:nth-child(3) .rule-tag { background: rgba(45,106,45,0.08); color: #2D6A2D; }
+  .rule-card:nth-child(4) .rule-tag { background: rgba(26,74,138,0.08); color: #1A4A8A; }
+  .rule-card:nth-child(5) .rule-tag { background: rgba(139,16,32,0.08); color: var(--red-dark); }
+  .rule-card:nth-child(6) .rule-tag { background: rgba(107,58,139,0.08); color: #6B3A8B; }
+  .rule-card:nth-child(7) .rule-tag { background: rgba(196,122,26,0.1); color: #8B5000; }
+  .rule-card:nth-child(8) .rule-tag { background: rgba(196,30,58,0.07); color: var(--red); }
+
+  /* ── GOLDEN RULE ── */
+  .golden-rule-section {
+    background: var(--red-deep); padding: 80px 32px;
+    position: relative; overflow: hidden;
+  }
+  .golden-rule-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='40' cy='40' r='1.5' fill='%23E8B84B' fill-opacity='0.08'/%3E%3C/svg%3E");
+  }
+  .golden-rule-inner {
+    max-width: 800px; margin: 0 auto; text-align: center; position: relative;
+  }
+  .golden-rule-inner .section-label { color: var(--gold); }
+  .golden-rule-inner .section-title { color: white; }
+  .golden-rule-inner .section-divider { background: var(--gold); margin: 0 auto 40px; }
+  .golden-rule-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(232,184,75,0.25);
+    border-radius: 16px; padding: 40px 48px;
+    position: relative;
+  }
+  .golden-rule-box p {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-style: italic;
+    color: rgba(255,255,255,0.9); line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .golden-rule-box .bangla-text {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 26px; color: var(--gold);
+    font-style: normal;
+  }
+
+  /* ── SPIRIT SECTION ── */
+  .spirit-section { padding: 80px 32px; max-width: 1100px; margin: 0 auto; }
+  .spirit-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 48px;
+  }
+  .spirit-card {
+    background: var(--bg-warm); border-radius: 16px;
+    padding: 32px 24px; text-align: center;
+    border-bottom: 3px solid var(--gold);
+    transition: transform 0.3s;
+  }
+  .spirit-card:hover { transform: translateY(-4px); }
+  .spirit-icon { font-size: 36px; margin-bottom: 14px; }
+  .spirit-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    color: var(--ink); margin-bottom: 6px;
+  }
+  .spirit-bangla {
+    font-family: 'Hind Siliguri', sans-serif;
+    font-size: 15px; color: var(--red); margin-bottom: 12px;
+  }
+  .spirit-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* ── FOOTER NOTE ── */
+  .rules-footer {
+    background: var(--red-dark); color: white;
+    padding: 48px 32px; text-align: center;
+  }
+  .rules-footer p {
+    max-width: 700px; margin: 0 auto;
+    font-size: 16px; line-height: 1.8; color: rgba(255,255,255,0.75);
+  }
+  .rules-footer strong { color: var(--gold); }
+  .rules-footer .bangla { font-size: 20px; color: var(--gold-light); margin-top: 16px; display: block; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .rules-grid { grid-template-columns: 1fr; }
+    .spirit-grid { grid-template-columns: 1fr; }
+    .golden-rule-box { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-badge">ব</div>
+      <div class="nav-wordmark">
+        <strong>BAMM</strong>
+        <span>Mid Missouri</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">About</a></li>
+      <li><a href="index.html#events">Events</a></li>
+      <li><a href="index.html#leadership">Leadership</a></li>
+      <li><a href="rules.html" class="active">Group Rules</a></li>
+      <li><a href="index.html#membership">Join Us</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="rules-hero">
+  <div class="rules-hero-inner">
+    <span class="bangla">আমাদের নিয়মাবলী</span>
+    <h1>Our Community<br><em>Rules & Spirit</em></h1>
+    <p>BAMM is built on warmth, respect, and a shared love for Bengali culture. These rules exist not to restrict, but to nurture the community we all want to be part of.</p>
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-diamond"></div>
+      <div class="hero-divider-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Preamble -->
+<div class="preamble">
+  <div class="preamble-quote">
+    <p>
+      We are a community that values <strong>culture with curiosity</strong> and <strong>tradition with thinking</strong>. We gather to celebrate, debate, cook, sing, and care for one another — rooted in the traditions of Bengal and grounded in the warmth of Mid Missouri.
+      <span class="attribution">— BAMM Founding Bylaws, December 2025</span>
+    </p>
+  </div>
+</div>
+
+<!-- Rules Grid -->
+<section class="rules-section">
+  <div class="section-header">
+    <span class="section-label bangla">নিয়ম</span>
+    <h2 class="section-title">Community Rules</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="rules-grid">
+
+    <div class="rule-card">
+      <div class="rule-number">01</div>
+      <div class="rule-icon">🤝</div>
+      <div class="rule-title">Respect Above All</div>
+      <div class="rule-bangla bangla">সম্মান সবার আগে</div>
+      <p class="rule-desc">Treat every member — new or long-standing, student or elder — with dignity and kindness. Disagreements are welcome; disrespect is not. This is a space where every Bengali voice belongs.</p>
+      <span class="rule-tag">Core Value</span>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">02</div>
+      <div class="rule-icon">🌍</div>
+      <div class="rule-title">Welcoming to All</div>
+      <div class="rule-bangla bangla">সবার জন্য উন্মুক্ত</div>
+      <p class="rule-desc">Anyone with Bengali heritage or connection — and friends of Bengali culture — are warmly welcomed. We celebrate diversity of origin, profession, age, and background. No one should ever feel like an outsider here.</p>
+      <span class="rule-tag">Inclusion</span>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">03</div>
+      <div class="rule-icon">🗣️</div>
+      <div class="rule-title">Constructive Adda Only</div>
+      <div class="rule-bangla bangla">গঠনমূলক আড্ডা</div>
+      <p class="rule-desc">Bengali adda is sacred — we love spirited discussion. But keep conversations constructive. Personal attacks, trolling, or inflammatory remarks have no place here. Debate ideas, not people.</p>
+      <span class="rule-tag">Communication</span>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">04</div>
+      <div class="rule-icon">📅</div>
+      <div class="rule-title">Event Commitments Matter</div>
+      <div class="rule-bangla bangla">অঙ্গীকার পালন করুন</div>
+      <p class="rule-desc">If you commit to volunteering, bringing food, or taking a committee role — follow through. All event donations must be submitted at least two weeks before the event. Repeated follow-ups are never pleasant for anyone.</p>
+      <span class="rule-tag">Responsibility</span>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">05</div>
+      <div class="rule-icon">🏛️</div>
+      <div class="rule-title">Respect the Core Group</div>
+      <div class="rule-bangla bangla">কোর গ্রুপকে সম্মান করুন</div>
+      <p class="rule-desc">The Core Group (Pitu Haldar, Sharmila Mitra, Sounak Chakraborty) was elected by the community to serve the community. Engage with them respectfully. Concerns should be raised through dialogue, not public conflict.</p>
+      <span class="rule-tag">Governance</span>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">06</div>
+      <div class="rule-icon">🎭</div>
+      <div class="rule-title">Committee Autonomy</div>
+      <div class="rule-bangla bangla">কমিটির স্বায়ত্তশাসন</div>
+      <p class="rule-desc">Food, Decoration, and Cultural Committees have full autonomy in their domain. Do not interfere with their work uninvited. No one is permitted to linger around the stage or prompt the MC. Trust the process.</p>
+      <span class="rule-tag">Operations</span>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">07</div>
+      <div class="rule-icon">📸</div>
+      <div class="rule-title">Mindful Sharing</div>
+      <div class="rule-bangla bangla">সচেতন শেয়ারিং</div>
+      <p class="rule-desc">Before posting photos or videos of community members online, consider their privacy. Avoid sharing images of children without parental awareness. Keep group communications — especially financial matters — confidential within the community.</p>
+      <span class="rule-tag">Privacy</span>
+    </div>
+
+    <div class="rule-card">
+      <div class="rule-number">08</div>
+      <div class="rule-icon">🌸</div>
+      <div class="rule-title">Celebrate Generously</div>
+      <div class="rule-bangla bangla">উদারভাবে উদযাপন করুন</div>
+      <p class="rule-desc">Show up for each other's milestones. Contribute to potlucks with love. Cheer for every performer — from the youngest student to the most seasoned artist. A community grows when its members celebrate one another freely.</p>
+      <span class="rule-tag">Community Spirit</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- Golden Rule -->
+<section class="golden-rule-section">
+  <div class="golden-rule-inner">
+    <span class="section-label bangla">সোনার নিয়ম</span>
+    <h2 class="section-title">The Golden Rule</h2>
+    <div class="section-divider"></div>
+    <div class="golden-rule-box">
+      <p>Be the kind of community member you wish everyone else would be. Show up with warmth, leave with gratitude, and carry the spirit of Bengal wherever you go.</p>
+      <p class="bangla bangla-text">আমরা একটি পরিবার — এখানে সবার জায়গা আছে।</p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.55); font-style:normal; margin-top:10px; font-family:'DM Sans',sans-serif;">
+        "We are a family — there is a place for everyone here."
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Spirit Cards -->
+<section class="spirit-section">
+  <div class="section-header">
+    <span class="section-label bangla">আমাদের চেতনা</span>
+    <h2 class="section-title">The BAMM Spirit</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="spirit-grid">
+    <div class="spirit-card">
+      <div class="spirit-icon">📚</div>
+      <div class="spirit-title">Culture with Curiosity</div>
+      <div class="spirit-bangla bangla">কৌতূহলের সাথে সংস্কৃতি</div>
+      <p class="spirit-desc">We love Tagore as much as street food, Rabindra Sangeet as much as modern cinema. Curiosity is what keeps our culture alive.</p>
+    </div>
+    <div class="spirit-card">
+      <div class="spirit-icon">🔥</div>
+      <div class="spirit-title">Tradition with Thinking</div>
+      <div class="spirit-bangla bangla">চিন্তার সাথে ঐতিহ্য</div>
+      <p class="spirit-desc">We honour our traditions while questioning, evolving, and adapting them. Preserving culture means thinking about it — not just repeating it.</p>
+    </div>
+    <div class="spirit-card">
+      <div class="spirit-icon">☕</div>
+      <div class="spirit-title">Strong Opinions, Strong Tea</div>
+      <div class="spirit-bangla bangla">জোরালো মতামত, কড়া চা</div>
+      <p class="spirit-desc">Spirited debate is in our DNA. Disagree passionately, but always with respect. The best adda ends with everyone still friends — and wanting more chai.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer Note -->
+<div class="rules-footer">
+  <p>
+    These rules were adopted at the <strong>BAMM founding meeting on December 14, 2025</strong> at the University of Missouri, and reflect the values in our community Bylaws. Questions or concerns? Reach the Core Group at <strong>contact@bamm-mo.org</strong>
+  </p>
+  <span class="bangla">জয় বাংলা 🌸</span>
+</div>
+
+</body>
+</html>
